@@ -10,4 +10,8 @@ interface IUserSession {
     fun getUserId(): String
     fun setIsLecturer(isLecturer: Boolean)
     fun isLecturer(): Boolean
+    fun setEmail(email: String)
+    fun getEmail(): String
+    fun setDepartment(department: String)
+    fun getDepartment(): String
 }

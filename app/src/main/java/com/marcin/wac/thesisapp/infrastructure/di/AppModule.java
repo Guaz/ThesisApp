@@ -17,6 +17,7 @@ import dagger.Provides;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.CookieJar;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -44,16 +45,16 @@ public class AppModule {
         httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addNetworkInterceptor(new StethoInterceptor());
         httpClient.addInterceptor(httpLoggingInterceptor);
-//        httpClient.addInterceptor(chain -> {
-//            Request.Builder request = chain.request().newBuilder();
-//
-//            if (userSession.isLoggedIn())
-//                request.addHeader("Authorization", "Bearer " + userSession.getToken());
-//
-//            return chain.proceed(request.build());
-//        });
+        httpClient.addInterceptor(chain -> {
+            Request.Builder request = chain.request().newBuilder();
+            if (userSession.isLoggedIn()) {
+                request.header("Authorization", "Bearer " + userSession.getToken());
+                request.addHeader("Cookie", "JSESSIONID=" + userSession.getToken() + "; path=/; domain=thesis-library-studies.herokuapp.com; Secure; HttpOnly;");
+            }
+
+            return chain.proceed(request.build());
+        });
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(AppConfig.API_URL)

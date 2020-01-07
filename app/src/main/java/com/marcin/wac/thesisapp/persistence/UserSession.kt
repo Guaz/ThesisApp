@@ -8,6 +8,8 @@ open class UserSession @Inject constructor(context: Context) : BaseStorage(conte
 
     private val TOKEN = "token"
     private val IS_LECTURER = "is_lecturer"
+    private val EMAIL = "email"
+    private val DEPARTMENT = "department"
     private val USER = "user"
 
     override fun getStorageName() = "com.marcin.wac.thesisapp.user_session"
@@ -21,7 +23,7 @@ open class UserSession @Inject constructor(context: Context) : BaseStorage(conte
     }
 
     override fun getToken(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return getString(TOKEN, "default").toString()
     }
 
     override fun isLoggedIn() = getToken()!!.isNotEmpty() && getToken() != "default"
@@ -47,5 +49,20 @@ open class UserSession @Inject constructor(context: Context) : BaseStorage(conte
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun setEmail(email: String) {
+        putString(EMAIL, email)
+    }
+
+    override fun getEmail(): String {
+        return getString(EMAIL, "").toString()
+    }
+
+    override fun setDepartment(department: String) {
+        putString(DEPARTMENT, department)
+    }
+
+    override fun getDepartment(): String {
+        return getString(DEPARTMENT, "").toString()
+    }
 
 }

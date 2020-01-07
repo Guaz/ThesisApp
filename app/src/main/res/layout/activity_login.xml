@@ -11,22 +11,25 @@
         android:padding="16dp">
 
         <EditText
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
             android:layout_marginBottom="16dp"/>
 
         <EditText
+            android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"/>
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_gravity="bottom"
         android:background="@color/colorPrimary">
-
     </FrameLayout>
 
 </FrameLayout>
