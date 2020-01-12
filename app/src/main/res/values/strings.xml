@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ThesisApp</string>
+    <string name="error_try_again_later">Wystapil błąd, spróbuj jeszcze raz później</string>
 </resources>

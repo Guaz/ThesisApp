@@ -3,6 +3,7 @@ package com.marcin.wac.thesisapp.modules.login
 import android.util.Log
 import com.marcin.wac.thesisapp.infrastructure.api.ThesisApi
 import com.marcin.wac.thesisapp.models.body.LoginBody
+import com.marcin.wac.thesisapp.persistence.IUserSession
 import com.marcin.wac.thesisapp.persistence.UserSession
 import com.marcin.wac.thesisapp.utils.BaseCallback
 import com.marcin.wac.thesisapp.utils.BooleanCallback
@@ -12,7 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class LoginInteractor @Inject constructor(private val api: ThesisApi,
-                                          private val userSession: UserSession) {
+                                          private val userSession: IUserSession) {
     private val disposable = CompositeDisposable()
 
     fun login(loginBody: LoginBody, callback: BooleanCallback) {
@@ -39,7 +40,7 @@ class LoginInteractor @Inject constructor(private val api: ThesisApi,
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
-                userSession.setDepartment(response.department)
+                userSession.setUser(response)
                 Log.d("TESTAGH", "0suc")
 
                 if (response.role == "student"){

@@ -2,11 +2,16 @@ package com.marcin.wac.thesisapp.modules.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.marcin.wac.thesisapp.R
 import com.marcin.wac.thesisapp.infrastructure.di.DaggApp
+import com.marcin.wac.thesisapp.modules.lecturer.LecturerMainActivity
 import com.marcin.wac.thesisapp.modules.student.smain.StudentMainActivity
 import com.marcin.wac.thesisapp.utils.bases.BaseActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import org.jetbrains.anko.clearTop
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
 import javax.inject.Inject
 
 interface LoginView{
@@ -38,11 +43,15 @@ class  LoginActivity : BaseActivity(), LoginView {
     }
 
     override fun startStudent() {
-        startActivity(Intent(this, StudentMainActivity::class.java))
+        startActivity(intentFor<StudentMainActivity>().clearTop().newTask())
+        overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit)
+        finish()
     }
 
     override fun startLecturer() {
-        startActivity(Intent(this, StudentMainActivity::class.java))
+        startActivity(intentFor<LecturerMainActivity>().clearTop().newTask())
+        overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit)
+        finish()
     }
 
     override fun showErrorLabel() {
@@ -50,11 +59,11 @@ class  LoginActivity : BaseActivity(), LoginView {
     }
 
     override fun showLoadingLayout() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        login_loading.visibility = View.VISIBLE
     }
 
     override fun hideLoadingLayout() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        login_loading.visibility = View.GONE
     }
 
 }

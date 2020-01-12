@@ -30,5 +30,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".modules.student.smain.StudentMainActivity" />
         <activity android:name=".modules.lecturer.LecturerMainActivity" />
+        <activity android:name=".modules.thesis.NewThesisActivity" />
+        <activity android:name=".modules.details.ThesisDetailsActivity" />
     </application>
 </manifest>

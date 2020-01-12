@@ -7,7 +7,7 @@ import com.marcin.wac.thesisapp.utils.ParamCallback
 import javax.inject.Inject
 
 class StudentMainPresenter @Inject constructor(private val interactor: StudentMainInteractor): BasePresenter<StudentMainView>(){
-
+    private var lastBackClick: Long = 0
 
     override fun attachView(view: StudentMainView) {
         super.attachView(view)
@@ -46,5 +46,14 @@ class StudentMainPresenter @Inject constructor(private val interactor: StudentMa
 
             }
         })
+    }
+
+    fun onBackPressed(){
+        if (System.currentTimeMillis() - lastBackClick < 3000)
+            view?.finishActivity()
+        else {
+            view?.showClickAgainToExitToast()
+            lastBackClick = System.currentTimeMillis()
+        }
     }
 }

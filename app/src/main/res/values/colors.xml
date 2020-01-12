@@ -8,4 +8,7 @@
 
     <color name="dark_blue_2796B3">#2796B3</color>
     <color name="light_orange_FFB36B">#FFB36B</color>
+
+    <color name="new_gray_6a6a6a">#6A6A6A</color>
+    <color name="error_red">#cd3d40</color>
 </resources>

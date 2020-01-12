@@ -2,6 +2,7 @@ package com.marcin.wac.thesisapp.modules.student.smain
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marcin.wac.thesisapp.R
 import com.marcin.wac.thesisapp.adapters.ThesisAdapter
@@ -18,6 +19,9 @@ interface StudentMainView{
 
     fun showLoadingView()
     fun hideLoadingView()
+
+    fun showClickAgainToExitToast()
+    fun finishActivity()
 }
 
 class StudentMainActivity: BaseActivity(), StudentMainView{
@@ -55,4 +59,15 @@ class StudentMainActivity: BaseActivity(), StudentMainView{
         student_main_loading.visibility = View.GONE
     }
 
+    override fun onBackPressed() {
+        presenter.onBackPressed()
+    }
+
+    override fun showClickAgainToExitToast() {
+        Toast.makeText(this, "Kliknij ponownie aby wyjść", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun finishActivity() {
+        finish()
+    }
 }

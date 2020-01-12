@@ -31,6 +31,8 @@ class SplashActivity : BaseActivity(), SplashView{
 
     override fun openLoginActivity() {
         startActivity(Intent(this, LoginActivity::class.java))
+        overridePendingTransition(R.anim.activity_enter, R.anim.activity_exit)
+        finish()
     }
 
     override fun openMainActivity() {

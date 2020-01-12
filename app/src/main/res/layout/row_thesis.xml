@@ -4,7 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp">
+    android:layout_margin="4dp"
+    android:padding="6dp"
+    android:background="@drawable/border_bg">
 
     <TextView
         android:id="@+id/row_thesis_title"
@@ -27,6 +29,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Java, Scala, Taniec disco"
+
+        />
+
+    <TextView
+        android:id="@+id/row_thesis_promoter_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="promoter email"
+
+        />
+
+    <TextView
+        android:id="@+id/row_thesis_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="status: occupied"
 
         />
 

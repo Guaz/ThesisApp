@@ -30,7 +30,11 @@ class ThesisAdapter(private val dataset: List<ThesisModel>,
             with(view) {
                 row_thesis_title.text = thesis.title
                 row_thesis_description.text = thesis.description
-                row_thesis_skills.text = thesis.studentSkills
+                row_thesis_skills.text = thesis.studentsSkills
+                row_thesis_promoter_email.text = thesis.promoterEmail
+                row_thesis_status.text = "Status: Temat wolny"
+                if (thesis.reserved) row_thesis_status.text = "Status: Temat zarezerwowany"
+                if (thesis.occupied) row_thesis_status.text = "Status: Temat zajęty"
                 setOnClickListener { mThesisClicked(thesis) }
             }
         }

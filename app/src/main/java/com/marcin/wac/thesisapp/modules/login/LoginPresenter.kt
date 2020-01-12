@@ -9,20 +9,17 @@ import javax.inject.Inject
 class LoginPresenter @Inject constructor(private var interactor: LoginInteractor): BasePresenter<LoginView>() {
 
     fun onButtonClick(email: String, password: String){
+        view?.showLoadingLayout()
         interactor.login(LoginBody(email, password), object: BooleanCallback{
             override fun success(isStudent: Boolean) {
                 if (isStudent) view?.startStudent() else view?.startLecturer()
+                view?.hideLoadingLayout()
             }
 
             override fun error() {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                view?.hideLoadingLayout()
             }
 
         })
-    }
-
-    override fun detachView() {
-        super.detachView()
-//        interactor.clearNetworking()
     }
 }
