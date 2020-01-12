@@ -9,6 +9,7 @@ import com.marcin.wac.thesisapp.utils.ParamCallback
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class ThesisDetailsInteractor @Inject constructor(private val api: ThesisApi,
@@ -37,14 +38,14 @@ class ThesisDetailsInteractor @Inject constructor(private val api: ThesisApi,
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
                 callback.success()
-
             }, {
-                Log.d("TESTAGH", "err " + it.message)
-//                if (logoutManager.isUnauthorized(it)) {
-//                    logoutManager.logout()
-//                }
-            }
-            ))
+                if (it is HttpException) {
+                    when (it.code()) {
+                        204 -> callback.success()
+                        else -> callback.error()
+                    }
+                }
+            }))
     }
 
     fun occupyThesis(id: Long, studentEmail: String, callback: BaseCallback){

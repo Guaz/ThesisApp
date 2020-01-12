@@ -4,8 +4,9 @@ import com.marcin.wac.thesisapp.modules.details.ThesisDetailsActivity;
 import com.marcin.wac.thesisapp.modules.lecturer.LecturerMainActivity;
 import com.marcin.wac.thesisapp.modules.login.LoginActivity;
 import com.marcin.wac.thesisapp.modules.main.MainActivity;
+import com.marcin.wac.thesisapp.modules.register.RegisterActivity;
 import com.marcin.wac.thesisapp.modules.splash.SplashActivity;
-import com.marcin.wac.thesisapp.modules.student.smain.StudentMainActivity;
+import com.marcin.wac.thesisapp.modules.student.StudentMainActivity;
 import com.marcin.wac.thesisapp.modules.thesis.NewThesisActivity;
 
 import javax.inject.Singleton;
@@ -27,7 +28,5 @@ AppComponent {
     void inject(LecturerMainActivity lecturerMainActivity);
     void inject(NewThesisActivity newThesisActivity);
     void inject(ThesisDetailsActivity thesisDetailsActivity);
-
-    // Fragment
-
+    void inject(RegisterActivity registerActivity);
 }

@@ -1,4 +1,4 @@
-package com.marcin.wac.thesisapp.modules.student.smain
+package com.marcin.wac.thesisapp.modules.student
 
 import android.util.Log
 import com.marcin.wac.thesisapp.infrastructure.api.ThesisApi

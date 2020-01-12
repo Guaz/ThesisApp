@@ -1,5 +1,6 @@
 package com.marcin.wac.thesisapp.modules.details
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -34,7 +35,10 @@ interface ThesisDetailsView{
     fun setOnCheckBoxClickLogic()
     fun setOnTextEnteredTextWatcher()
     fun setOnChangeStatusConfirmationClickListener()
+    fun setOnReserveButtonClickListener()
     fun setStudentsListAdapter(studentList: List<UserModel>)
+
+    fun openMailApp(email: String)
 
     fun hideStudentEmailLayout()
     fun hideButtons()
@@ -53,6 +57,8 @@ interface ThesisDetailsView{
 
     fun showStudentRecycler()
     fun hideStudentRecycler()
+
+    fun showReserveButton()
 
     fun showLoadingLayout()
     fun hideLoadingLayout()
@@ -153,6 +159,12 @@ class ThesisDetailsActivity: BaseActivity(), ThesisDetailsView{
         }
     }
 
+    override fun setOnReserveButtonClickListener() {
+        thesis_detail_reserve_button.setOnClickListener {
+            presenter.onReserveThesisClick()
+        }
+    }
+
     override fun setStudentsListAdapter(studentList: List<UserModel>) {
         val adapter = StudentsAdapter(studentList) {onStudentClick(it)}
         thesis_detail_user_recycler.layoutManager = LinearLayoutManager(this)
@@ -161,6 +173,13 @@ class ThesisDetailsActivity: BaseActivity(), ThesisDetailsView{
 
     private fun onStudentClick(student: UserModel){
         presenter.onStudentClick(student)
+    }
+
+    override fun openMailApp(email: String) {
+        val emailIntent = Intent(Intent.ACTION_SEND)
+        emailIntent.type = "plain/text"
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, email)
+        startActivity(Intent.createChooser(emailIntent, "Send mail..."))
     }
 
     override fun hideStudentEmailLayout() {
@@ -217,6 +236,10 @@ class ThesisDetailsActivity: BaseActivity(), ThesisDetailsView{
 
     override fun hideStudentRecycler() {
         thesis_detail_user_recycler.visibility = View.GONE
+    }
+
+    override fun showReserveButton() {
+        thesis_detail_reserve_button.visibility = View.VISIBLE
     }
 
     override fun showLoadingLayout() {

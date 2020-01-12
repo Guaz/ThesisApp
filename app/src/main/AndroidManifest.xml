@@ -28,9 +28,10 @@
         </activity>
         <activity android:name=".modules.login.LoginActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".modules.student.smain.StudentMainActivity" />
+        <activity android:name=".modules.student.StudentMainActivity" />
         <activity android:name=".modules.lecturer.LecturerMainActivity" />
         <activity android:name=".modules.thesis.NewThesisActivity" />
         <activity android:name=".modules.details.ThesisDetailsActivity" />
+        <activity android:name=".modules.register.RegisterActivity" />
     </application>
 </manifest>

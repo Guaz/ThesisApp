@@ -8,39 +8,39 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="6dp"
-        >
+        android:layout_margin="6dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/thesis_detail_buttons_layout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/thesis_detail_buttons_layout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/thesis_detail_change_status"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="Zmien status"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_marginEnd="4dp"
-                android:background="@color/light_orange_FFB36B"/>
+                <TextView
+                    android:id="@+id/thesis_detail_change_status"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Zmien status"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginEnd="4dp"
+                    android:background="@color/light_orange_FFB36B" />
 
-            <TextView
-                android:id="@+id/thesis_detail_delete"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="Usuń temat"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/dark_blue_2796B3"/>
+                <TextView
+                    android:id="@+id/thesis_detail_delete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Usuń temat"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/dark_blue_2796B3" />
 
-        </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/thesis_detail_change_status_layout"
@@ -56,16 +56,16 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                <CheckBox
-                    android:id="@+id/thesis_detail_reserve_checkbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"/>
+                    <CheckBox
+                        android:id="@+id/thesis_detail_reserve_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rezerwacja"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rezerwacja" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -76,12 +76,12 @@
                     <CheckBox
                         android:id="@+id/thesis_detail_occupy_checkbox"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Zajęcie tematu"/>
+                        android:text="Zajęcie tematu" />
                 </LinearLayout>
 
                 <TextView
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     tools:text="Wybrano: John Doe"
                     android:layout_marginTop="4dp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/thesis_detail_change_status_confirm_change"
@@ -105,7 +105,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:background="@color/design_default_color_primary"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <EditText
                     android:id="@+id/thesis_detail_student_edittext"
@@ -113,14 +113,14 @@
                     android:layout_height="wrap_content"
                     android:hint="Nazwisko studenta"
                     android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"/>
+                    android:layout_marginBottom="4dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/thesis_detail_user_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -138,8 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Tytuł:"
-                    android:layout_marginStart="4dp"
-                    />
+                    android:layout_marginStart="4dp" />
 
                 <TextView
                     android:id="@+id/thesis_detail_title"
@@ -165,8 +164,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Opis:"
-                    android:layout_marginStart="4dp"
-                    />
+                    android:layout_marginStart="4dp" />
 
                 <TextView
                     android:id="@+id/thesis_detail_description"
@@ -192,8 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Język:"
-                    android:layout_marginStart="4dp"
-                    />
+                    android:layout_marginStart="4dp" />
 
                 <TextView
                     android:id="@+id/thesis_detail_language"
@@ -219,8 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Potrzebne\numiejętności:"
-                    android:layout_marginStart="4dp"
-                    />
+                    android:layout_marginStart="4dp" />
 
                 <TextView
                     android:id="@+id/thesis_detail_student_skills"
@@ -246,8 +242,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Technologie:"
-                    android:layout_marginStart="4dp"
-                    />
+                    android:layout_marginStart="4dp" />
 
                 <TextView
                     android:id="@+id/thesis_detail_technologies"
@@ -273,8 +268,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Email\nprowadzącego:"
-                    android:layout_marginStart="4dp"
-                    />
+                    android:layout_marginStart="4dp" />
 
                 <TextView
                     android:id="@+id/thesis_detail_promoter_email"
@@ -300,8 +294,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Email\nrecenzenta:"
-                    android:layout_marginStart="4dp"
-                    />
+                    android:layout_marginStart="4dp" />
 
                 <TextView
                     android:id="@+id/thesis_detail_reviewer_email"
@@ -327,8 +320,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Rezerwacja:"
-                    android:layout_marginStart="4dp"
-                    />
+                    android:layout_marginStart="4dp" />
 
                 <TextView
                     android:id="@+id/thesis_detail_reserved"
@@ -354,8 +346,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Zajety:"
-                    android:layout_marginStart="4dp"
-                    />
+                    android:layout_marginStart="4dp" />
 
                 <TextView
                     android:id="@+id/thesis_detail_occupied"
@@ -382,8 +373,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Email studenta:"
-                    android:layout_marginStart="4dp"
-                    />
+                    android:layout_marginStart="4dp" />
 
                 <TextView
                     android:id="@+id/thesis_detail_student_email"
@@ -396,6 +386,16 @@
                     />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/thesis_detail_reserve_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="Rezerwacja tematu"
+                android:background="@color/light_orange_FFB36B"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
         </LinearLayout>
 
     </ScrollView>
@@ -407,12 +407,11 @@
         android:background="@color/white"
         android:clickable="true"
         android:focusable="true"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
     </FrameLayout>
 </FrameLayout>

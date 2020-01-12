@@ -23,9 +23,11 @@ class ThesisDetailsPresenter @Inject constructor(val interactor: ThesisDetailsIn
 
         this.thesis = thesis
 
-        if (userSession.isStudent())
+        if (userSession.isStudent()) {
             view?.hideButtons()
-        else {
+            view?.showReserveButton()
+            view?.setOnReserveButtonClickListener()
+        } else {
             view?.showLoadingLayout()
             interactor.getStudentList(object: ParamCallback<List<UserModel>>{
                 override fun success(response: List<UserModel>) {
@@ -142,5 +144,9 @@ class ThesisDetailsPresenter @Inject constructor(val interactor: ThesisDetailsIn
                     view?.showErrorToast()
                 }
             })
+    }
+
+    fun onReserveThesisClick(){
+        view?.openMailApp(thesis.promoterEmail)
     }
 }

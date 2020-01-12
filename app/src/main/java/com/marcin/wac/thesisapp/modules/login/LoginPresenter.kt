@@ -8,7 +8,13 @@ import javax.inject.Inject
 
 class LoginPresenter @Inject constructor(private var interactor: LoginInteractor): BasePresenter<LoginView>() {
 
-    fun onButtonClick(email: String, password: String){
+    override fun attachView(view: LoginView) {
+        super.attachView(view)
+        view.setRegisterClickListener()
+        view.setLoginClickListener()
+    }
+
+    fun onLoginClick(email: String, password: String){
         view?.showLoadingLayout()
         interactor.login(LoginBody(email, password), object: BooleanCallback{
             override fun success(isStudent: Boolean) {
@@ -18,8 +24,13 @@ class LoginPresenter @Inject constructor(private var interactor: LoginInteractor
 
             override fun error() {
                 view?.hideLoadingLayout()
+                view?.showErrorToast()
             }
 
         })
+    }
+
+    fun onRegisterClick(){
+        view?.openRegisterActivity()
     }
 }
