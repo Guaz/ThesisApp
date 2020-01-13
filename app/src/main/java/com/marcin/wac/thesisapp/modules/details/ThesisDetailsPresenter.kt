@@ -45,6 +45,7 @@ class ThesisDetailsPresenter @Inject constructor(val interactor: ThesisDetailsIn
             view?.setOnChangeStatusConfirmationClickListener()
             view?.setOnCheckBoxClickLogic()
             view?.setOnTextEnteredTextWatcher()
+            view?.setOnFreeThesisClickListener()
         }
 
         view?.setTitle(thesis.title)
@@ -55,7 +56,7 @@ class ThesisDetailsPresenter @Inject constructor(val interactor: ThesisDetailsIn
         view?.setPromoterEmail(thesis.promoterEmail)
         view?.setReviewerEmail(thesis.reviewerEmail)
         view?.setReserved(if (thesis.reserved) "Zarezerwowany" else "Brak rezerwacji")
-        view?.setOccupied(if (thesis.reserved) "Zajęty" else "Wolny")
+        view?.setOccupied(if (thesis.occupied) "Zajęty" else "Wolny")
 
         if (thesis.studentEmail.isNullOrBlank())
             view?.hideStudentEmailLayout()
@@ -122,31 +123,128 @@ class ThesisDetailsPresenter @Inject constructor(val interactor: ThesisDetailsIn
     }
 
     fun onChangeStatusConfirmationClick(isOccupy: Boolean){
-        if (isOccupy)
+        view?.showLoadingLayout()
+
+        if (thesis.occupied) {
+            interactor.unoccupyThesis(thesis.thesisId, object : BaseCallback {
+                override fun success() {
+                    changeStatus(isOccupy)
+                }
+
+                override fun error() {
+                    view?.showErrorToast()
+                    view?.hideLoadingLayout()
+                }
+
+            })
+
+        } else if (thesis.reserved) {
+            interactor.unreserveThesis(thesis.thesisId, object : BaseCallback {
+                override fun success() {
+                    changeStatus(isOccupy)
+                }
+
+                override fun error() {
+                    view?.showErrorToast()
+                    view?.hideLoadingLayout()
+                }
+
+            })
+        } else if (isOccupy){
             interactor.occupyThesis(thesis.thesisId, studentChoosen.email, object: BaseCallback{
                 override fun success() {
                     view?.showStatusChangedToast()
+                    view?.hideLoadingLayout()
                     view?.finishActivity()
                 }
 
                 override fun error() {
                     view?.showErrorToast()
+                    view?.hideLoadingLayout()
+                }
+            })
+        } else if (!isOccupy) {
+            interactor.reserveThesis(thesis.thesisId, studentChoosen.email, object: BaseCallback{
+                override fun success() {
+                    view?.showStatusChangedToast()
+                    view?.hideLoadingLayout()
+                    view?.finishActivity()
+                }
+
+                override fun error() {
+                    view?.showErrorToast()
+                    view?.hideLoadingLayout()
+                }
+            })
+        }
+    }
+
+    private fun changeStatus(isOccupy: Boolean){
+        if (isOccupy)
+            interactor.occupyThesis(thesis.thesisId, studentChoosen.email, object: BaseCallback{
+                override fun success() {
+                    view?.showStatusChangedToast()
+                    view?.hideLoadingLayout()
+                    view?.finishActivity()
+                }
+
+                override fun error() {
+                    view?.showErrorToast()
+                    view?.hideLoadingLayout()
                 }
             })
         else
             interactor.reserveThesis(thesis.thesisId, studentChoosen.email, object: BaseCallback{
                 override fun success() {
                     view?.showStatusChangedToast()
+                    view?.hideLoadingLayout()
                     view?.finishActivity()
                 }
 
                 override fun error() {
                     view?.showErrorToast()
+                    view?.hideLoadingLayout()
                 }
             })
     }
 
     fun onReserveThesisClick(){
         view?.openMailApp(thesis.promoterEmail)
+    }
+
+    fun onFreeThesisClick(){
+        when {
+            thesis.occupied -> {
+                view?.showLoadingLayout()
+                interactor.unoccupyThesis(thesis.thesisId, object : BaseCallback {
+                    override fun success() {
+                        view?.showStatusChangedToast()
+                        view?.hideLoadingLayout()
+                        view?.finishActivity()
+                    }
+
+                    override fun error() {
+                        view?.showErrorToast()
+                        view?.hideLoadingLayout()
+                    }
+                })
+            }
+            thesis.reserved -> {
+                view?.showLoadingLayout()
+                interactor.unreserveThesis(thesis.thesisId, object : BaseCallback {
+                    override fun success() {
+                        view?.showStatusChangedToast()
+                        view?.hideLoadingLayout()
+                        view?.finishActivity()
+                    }
+
+                    override fun error() {
+                        view?.showErrorToast()
+                        view?.hideLoadingLayout()
+                    }
+                })
+            }
+            else -> view?.showNoStatusToChange()
+        }
     }
 }

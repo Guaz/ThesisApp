@@ -13,6 +13,7 @@ class StudentMainPresenter @Inject constructor(private val interactor: StudentMa
     override fun attachView(view: StudentMainView) {
         super.attachView(view)
         view.showLoadingView()
+        view.setOnUserThesisClickListener()
 
         interactor.getThesisList(object : ParamCallback<GetThesisListResponse>{
             override fun success(response: GetThesisListResponse) {
@@ -29,6 +30,7 @@ class StudentMainPresenter @Inject constructor(private val interactor: StudentMa
 
         interactor.getUserThesis(object : ParamCallback<ThesisModel>{
             override fun success(response: ThesisModel) {
+                userThesis = response
                 if (response.reserved)
                     view?.setUserThesisStatus("Status pracy dyplomowej: PRACA ZAREZERWOWANA\nKliknij aby zobaczyć detale pracy")
                 else if (response.occupied)

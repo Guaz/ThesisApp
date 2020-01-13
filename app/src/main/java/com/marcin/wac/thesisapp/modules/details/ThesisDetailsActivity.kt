@@ -36,6 +36,7 @@ interface ThesisDetailsView{
     fun setOnTextEnteredTextWatcher()
     fun setOnChangeStatusConfirmationClickListener()
     fun setOnReserveButtonClickListener()
+    fun setOnFreeThesisClickListener()
     fun setStudentsListAdapter(studentList: List<UserModel>)
 
     fun openMailApp(email: String)
@@ -47,6 +48,7 @@ interface ThesisDetailsView{
     fun showStatusChangedToast()
     fun showErrorToast()
     fun showThesisRemovedToast()
+    fun showNoStatusToChange()
     fun finishActivity()
 
     fun showChoosenStudent(name: String)
@@ -165,6 +167,12 @@ class ThesisDetailsActivity: BaseActivity(), ThesisDetailsView{
         }
     }
 
+    override fun setOnFreeThesisClickListener() {
+        thesis_detail_change_status_free_thesis.setOnClickListener {
+            presenter.onFreeThesisClick()
+        }
+    }
+
     override fun setStudentsListAdapter(studentList: List<UserModel>) {
         val adapter = StudentsAdapter(studentList) {onStudentClick(it)}
         thesis_detail_user_recycler.layoutManager = LinearLayoutManager(this)
@@ -191,7 +199,7 @@ class ThesisDetailsActivity: BaseActivity(), ThesisDetailsView{
     }
 
     override fun showRemoveDialog() {
-        this.alert("Czy chcesz usunac ten temat?") {
+        this.alert("Czy chcesz usuńąć ten temat?") {
             yesButton { presenter.onDeleteDialogYesClicked() }
             noButton {  }
         }.show()
@@ -207,6 +215,10 @@ class ThesisDetailsActivity: BaseActivity(), ThesisDetailsView{
 
     override fun showThesisRemovedToast() {
         Toast.makeText(this, "Temat usuniety", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showNoStatusToChange() {
+        Toast.makeText(this, "Temat nie jest zajęty", Toast.LENGTH_SHORT).show()
     }
 
     override fun finishActivity() {

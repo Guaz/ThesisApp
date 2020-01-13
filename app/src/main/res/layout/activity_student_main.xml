@@ -15,7 +15,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:background="@color/light_orange_FFB36B">
 
             <TextView
                 android:id="@+id/student_main_thesis_status"

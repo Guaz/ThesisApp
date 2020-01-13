@@ -51,6 +51,7 @@ public class AppModule {
             if (userSession.isLoggedIn()) {
                 request.header("Authorization", "Bearer " + userSession.getToken());
                 request.addHeader("Cookie", "JSESSIONID=" + userSession.getToken() + "; path=/; domain=thesis-library-studies.herokuapp.com; Secure; HttpOnly;");
+                request.addHeader("Content-Type", "application/json");
             }
 
             return chain.proceed(request.build());

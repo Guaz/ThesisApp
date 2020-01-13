@@ -56,10 +56,19 @@ class ThesisDetailsInteractor @Inject constructor(private val api: ThesisApi,
                 callback.success()
 
             }, {
-                Log.d("TESTAGH", "err " + it.message)
-//                if (logoutManager.isUnauthorized(it)) {
-//                    logoutManager.logout()
-//                }
+                callback.error()
+            }
+            ))
+    }
+
+    fun unoccupyThesis(id: Long, callback: BaseCallback){
+        disposable.add(api.unoccupyThesis(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ response ->
+                callback.success()
+            }, {
+                callback.error()
             }
             ))
     }
@@ -72,10 +81,19 @@ class ThesisDetailsInteractor @Inject constructor(private val api: ThesisApi,
                 callback.success()
 
             }, {
-                Log.d("TESTAGH", "err " + it.message)
-//                if (logoutManager.isUnauthorized(it)) {
-//                    logoutManager.logout()
-//                }
+                callback.error()
+            }
+            ))
+    }
+
+    fun unreserveThesis(id: Long, callback: BaseCallback){
+        disposable.add(api.unreserveThesis(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ response ->
+                callback.success()
+            }, {
+                callback.error()
             }
             ))
     }
